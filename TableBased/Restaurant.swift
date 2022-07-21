@@ -11,5 +11,5 @@ struct Restaurant{
     let type: String
     let location: String
     let image: String
-    let isVisited: Bool
+    var isVisited: Bool
 }
