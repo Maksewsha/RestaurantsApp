@@ -39,7 +39,7 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
         super.viewDidLoad()
         tableView.estimatedRowHeight = 38
         tableView.rowHeight = UITableView.automaticDimension
-        imageView.image = UIImage(named: restaurant!.image)
+        imageView.image = UIImage(data: restaurant!.image! as Data)
 //        tableView.backgroundColor = UIColor(ciColor: CIColor.yellow)
 //        tableView.separatorColor = UIColor(ciColor: CIColor.red)
         tableView.tableFooterView  = UIView(frame: CGRect.zero)

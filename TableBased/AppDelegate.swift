@@ -9,20 +9,22 @@ import UIKit
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    
+    lazy var coreDataStack = CoreDataStack()
 
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         let appearance = UINavigationBarAppearance()
-        appearance.backgroundColor = UIColor.green
+        appearance.backgroundColor = UIColor.red
         if let barFont = UIFont(name: "AppleSDGothicNeo-Light", size: 24){
             appearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white, NSAttributedString.Key.font: barFont]
         }
         UINavigationBar.appearance().standardAppearance = appearance
         UINavigationBar.appearance().scrollEdgeAppearance = appearance
         
-        
+        let statusBarView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 20))
         
         return true
     }
@@ -39,6 +41,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the user discards a scene session.
         // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
+    }
+    
+    func applicationWillTerminate(_ application: UIApplication) {
+        coreDataStack.saveContext()
     }
 
 
