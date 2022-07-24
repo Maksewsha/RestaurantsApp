@@ -14,10 +14,19 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
     @IBOutlet weak var tableView: UITableView!
     var restaurant: Restaurant?
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "mapSegue"{
+            let dvc = segue.destination as! MapViewController
+            dvc.restaurant = self.restaurant
+        }
+    }
+    
     
     
     @IBAction func unwindSegue(segue: UIStoryboardSegue){
-        
+        guard let srcController = segue.source as? RateViewController else { return }
+        guard let rating = srcController.restRating else { return }
+        rateButton.setImage(UIImage(named: rating), for: .normal)
     }
     
     
@@ -28,9 +37,6 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        rateButton.layer.cornerRadius = 5
-        rateButton.layer.borderWidth = 1
-        rateButton.layer.borderColor = UIColor.white.cgColor
         tableView.estimatedRowHeight = 38
         tableView.rowHeight = UITableView.automaticDimension
         imageView.image = UIImage(named: restaurant!.image)
