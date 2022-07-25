@@ -17,14 +17,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         let appearance = UINavigationBarAppearance()
-        appearance.backgroundColor = UIColor.red
+        appearance.backgroundColor = UIColor.green
         if let barFont = UIFont(name: "AppleSDGothicNeo-Light", size: 24){
             appearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white, NSAttributedString.Key.font: barFont]
         }
         UINavigationBar.appearance().standardAppearance = appearance
         UINavigationBar.appearance().scrollEdgeAppearance = appearance
         
-        let statusBarView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 20))
+        UITabBar.appearance().tintColor = .white
+        UITabBar.appearance().barTintColor = .green
+        UITabBar.appearance().selectionIndicatorImage = UIImage(named: "tabSelectBG")
         
         return true
     }

@@ -68,6 +68,19 @@ class ApplicViewController: UITableViewController, NSFetchedResultsControllerDel
         definesPresentationContext = true
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        let userDefaults = UserDefaults.standard
+        let wasIntroWatched = userDefaults.bool(forKey: "wasIntroWatched")
+        
+        guard !wasIntroWatched else { return }
+        
+        if let pageVC = storyboard?.instantiateViewController(withIdentifier: "pageViewController") as? PageViewController {
+            present(pageVC, animated: true, completion: nil)
+        }
+    }
+    
     
     // MARK: - Fetch controller delegate
     
